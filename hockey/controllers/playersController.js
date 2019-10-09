@@ -26,7 +26,7 @@ module.exports = {
     //   db.Stat.findOrCreate({where: {name: data.name}});
     // })
     
-    console.log(req.body)
+    console.log(req.params)
     
       
       
