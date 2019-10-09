@@ -24,14 +24,3 @@ module.exports = function(sequelize, DataTypes) {
   });
   return stats;
 };
-
-// CREATE TABLE stats (
-//   id INT NOT NULL AUTO_INCREMENT,
-//   jerseyNumber int,
-//   name VARCHAR(100) NOT NULL,
-//   gamesPlayed int NOT NULL,
-//   goals int NOT NULL,
-//   assists int NOT NULL,
-  
-//   PRIMARY KEY (id)
-// );
