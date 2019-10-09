@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import Login from "./pages/Login/login";
 
 
 
@@ -8,7 +8,7 @@ function App () {
     return (
       <Router>
         <div>
-          <LoginPage />
+          <Login />
         </div>
       </Router>
       );
