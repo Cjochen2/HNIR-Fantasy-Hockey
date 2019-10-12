@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import Wrapper from "../../components/Wrapper";
-import LoginBox from "../../components/LoginBox";
-import RegisterBox from "../../components/RegisterBox";
+import LoginBox from "../LoginBox";
+import RegisterBox from "../RegisterBox";
 import "./style.css";
 
 

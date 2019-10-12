@@ -11,23 +11,35 @@ module.exports = function (sequelize, DataTypes) {
 
         firstName: {
             type: DataTypes.STRING,
-
             allowNull: false
         },
         lastName: {
             type: DataTypes.STRING,
-
             allowNull: false
         },
         email: {
             type: DataTypes.STRING,
+            unique: true,
             allowNull: false
         },
         password: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
 
     });
+
+    var bcrypt = require('bcrypt');
+    User.beforeCreate((user, options) => {
+        const salt = bcrypt.genSaltSync();
+        user.password = bcrypt.hashSync(user.password, salt);
+    });
+
+
+    User.prototype.validPassword = function (password) {
+        return bcrypt.compareSync(password, this.password);
+    };
+
+
     return User;
 };
