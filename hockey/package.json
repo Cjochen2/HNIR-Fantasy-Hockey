@@ -3,17 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.5.0",
-    "@material-ui/icons": "^4.4.3",
+    "bcrypt": "^3.0.6",
     "concurrently": "^4.1.2",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "if-env": "^1.0.4",
-    "material-ui-icons": "^1.0.0-beta.36",
+    "morgan": "^1.9.1",
     "mysql2": "^1.7.0",
     "nodemon": "^1.19.3",
-    "react-router-dom": "^5.1.2",
     "sequelize": "^5.19.3"
   },
   "scripts": {
