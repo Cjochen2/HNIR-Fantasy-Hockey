@@ -61,7 +61,6 @@ class SignIn extends Component {
   
 componentDidMount() {
   API.load().then((response) => {
-    console.log(response);
     if (response.data.token) {
       this.props.history.push('/home');
     } else {

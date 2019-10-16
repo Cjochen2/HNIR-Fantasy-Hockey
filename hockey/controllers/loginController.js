@@ -121,7 +121,7 @@ module.exports = {
   },
 
   load: function (req, res) {
-    res.redirect('/')
+    res.json({notSignedIn: true});
   },
 
   login: function (req, res) {
