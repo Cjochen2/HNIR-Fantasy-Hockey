@@ -6,6 +6,8 @@ const PORT = process.env.PORT || 3003;
 const app = express();
 const routes = require("./routes")
 const db = require("./models");
+const morgan = require("morgan");
+const cookieParser = require('cookie-parser');
 const mysql = require("mysql2");
 
 const bodyParser = require("body-parser");
@@ -19,13 +21,12 @@ const apiKeySecret = "sk_test_HAxvhWCJ3JDle8ThO9IMZ3wM00r2yX2GsF";
 const stripe = Stripe(apiKeySecret);
 const upload = multer();
 
+//Begin of stripe server
 app.use(require("body-parser").text());
 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
@@ -110,14 +111,27 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
 
   res.json({ error, status });
 });
+//end of stripe server
+
+app.use(cookieParser());
+app.use(morgan('dev'));
 
 
-// app.use(session({
-//   key:'user_sid',
-// 	secret: 'secret',
-// 	resave: false,
-// 	saveUninitialized: false
-// }));
+app.use(session({
+  key:'user_sid',
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: false
+}));
+
+// Clears the cookie in the browser
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');        
+  }
+  next();
+});
+
 
 // Send every request to the React app
 // Define any API routes before this runs
@@ -127,15 +141,9 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
-
-
-db.sequelize.sync({force: true}).then(function () {
+db.sequelize.sync({force: false}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
 });
 
-
-// app.listen(PORT, function () {
-//   console.log(`🌎 ==> API server now on port ${PORT}!`);
-// });

@@ -6,6 +6,7 @@ import axios from "axios";
 import cheerio from "cheerio";
 import API from "../../utils/API";
 import Teams from "../../components/Teams";
+import Checkout from "../../components/Checkout";
 
 class Draft extends Component {
     state = {
@@ -98,7 +99,7 @@ class Draft extends Component {
                 <Jumbotron>Welcome to the Draft Page!</Jumbotron>
                 <Teams
                     players={this.state.players} />
-                
+                <Checkout />
             </Wrapper>
         )
     }
