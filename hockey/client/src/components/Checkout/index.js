@@ -1,33 +1,99 @@
-import React from 'react'
-import axios from 'axios';
+import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import STRIPE_PUBLISHABLE from '../StripeConst/index';
-import PAYMENT_SERVER_URL from '../StripeServer/index';
-const CURRENCY = 'EUR';
-const fromEuroToCent = amount => amount * 100;
-const successPayment = data => {
-  alert('Payment Successful');
-};
-const errorPayment = data => {
-  alert('Payment Error');
-};
-const onToken = (amount, description) => token =>
-  axios.post(PAYMENT_SERVER_URL,
-    {
-      description,
-      source: token.id,
-      currency: CURRENCY,
-      amount: fromEuroToCent(amount)
+
+const stripeApiKey = "pk_test_EeJm8Zn4FGm23tcNeFpqUFed00FFEazVf1";
+class Checkout extends Component {
+  state = {
+    product: "one-for-five",
+    show: true
+  };
+
+  handleClose = () => {
+    console.log("App#handleClose");
+  };
+
+  handleOpen = () => {
+    console.log("App#handleOpen");
+  };
+
+  handleProductChange = evt => {
+    this.setState({ product: evt.target.value });
+  };
+
+  toggleShow = () => {
+    this.setState(state => ({
+      show: !state.show
+    }));
+  };
+
+  handleToken = (token, addresses) => {
+    console.log("App#handleToken");
+    console.log(token);
+    console.log(addresses);
+    const { product } = this.state;
+
+    const body = new FormData();
+    // Send information to determine how to charge customer:
+    body.append("product", product);
+    body.append("quantity", 1);
+
+    // Send standard Stripe information:
+    body.append("stripeEmail", token.email);
+    body.append("stripeToken", token.id);
+    body.append("stripeTokenType", token.type);
+
+    body.append("stripeBillingName", addresses.billing_name || "");
+
+
+    fetch("/charge", {
+      method: "POST",
+      body,
+      mode: "no-cors"
     })
-    .then(successPayment)
-    .catch(errorPayment);
-const Checkout = ({ name, description, amount }) =>
-  <StripeCheckout
-    name={name}
-    description={description}
-    amount={fromEuroToCent(amount)}
-    token={onToken(amount, description)}
-    currency={CURRENCY}
-    stripeKey={STRIPE_PUBLISHABLE}
-  />
+      .then(res => {
+        console.log("response received");
+        console.dir(res);
+        return res.json();
+      })
+      .then(result => {
+        console.log("result");
+        console.log(result);
+      })
+      .catch(error => {
+        console.log("error");
+        console.error(
+          error,
+          "You may need to refresh the server sandbox. It hibernates due to inactivity."
+        );
+      });
+  };
+
+  render() {
+
+    let amount = 500;
+    let description = "Fanasty hockey team";
+    let label = "Buy your team"
+
+    return (
+      <div className="App">
+        <StripeCheckout
+          allowRememberMe={false}
+          amount={amount}
+          billingAddress
+          closed={this.handleClose}
+          description={description}
+          label={label}
+          locale="auto"
+          name="HNIR Fanasty Hockey"
+          opened={this.handleOpen}
+          panelLabel="Buy Team For {{amount}}"
+          stripeKey={stripeApiKey}
+          token={this.handleToken}
+          zipCode
+        />
+      </div>
+    );
+  }
+}
+
 export default Checkout;
