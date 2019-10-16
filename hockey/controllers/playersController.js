@@ -23,7 +23,7 @@ module.exports = {
             .then(function (item) { res.json({ item: item, created: true }); })
         } else {
           // Found an item, update it
-          model
+         db.Stat
             .update(req.body.player, { where: req.body.where })
             .then(function (item) { res.json({ item: item, created: false }); })
         }
