@@ -1,7 +1,15 @@
 import axios from "axios";
 
 export default {
-    updatePlayer: function (playerData) {
-        return axios.put("/api/players", playerData)
+    addPlayer: function(playerData) {
+        const requestBody = {
+            player: playerData,
+            where: {name: playerData.name}
+        }
+        return axios.post("/api/players", requestBody)
+    },
+    getPlayers: function () {
+        return axios.get("/api/players")
+        
+        } 
     }
-}

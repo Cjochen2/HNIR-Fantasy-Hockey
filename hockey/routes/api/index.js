@@ -7,7 +7,7 @@ router.use("/players", playerRoutes);
 // const loginRoutes = require("./loginRoutes")
 
 // Book routes
-router.use("/players", playerRoutes);
+//router.use("/players", playerRoutes);
 
 // router.use("/user", userRoutes)
 

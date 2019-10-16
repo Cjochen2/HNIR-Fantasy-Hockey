@@ -4,9 +4,9 @@ import Login from "./pages/Login/login";
 import Draft from "./pages/Draft/draft";
 
 
-
 function App () {
     return (
+          
       <Router>
         <div>
           <Draft />
