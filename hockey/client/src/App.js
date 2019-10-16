@@ -9,6 +9,7 @@ import RegisterBox from "./pages/RegisterBox";
 
 function App () {
     return (
+          
       <Router>
               <Jumbotron>Welcome to HNIR Draft Challenge</Jumbotron>
       
