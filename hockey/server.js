@@ -17,7 +17,7 @@ const Stripe = require("stripe");
 const uuidv4 = require("uuid/v4");
 
 // TODO: Configure with your test mode secret key.
-const apiKeySecret = "sk_test_HAxvhWCJ3JDle8ThO9IMZ3wM00r2yX2GsF";
+const apiKeySecret = process.env.SECRET_TEST;
 const stripe = Stripe(apiKeySecret);
 const upload = multer();
 

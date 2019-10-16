@@ -11,15 +11,15 @@ import "./style.css";
 class Home extends Component {
 
 
-    // componentDidMount() {
-    //     API.load().then((response) => {
-    //         if(response.data.notSignedIn) {
-    //             this.props.history.push('/');
-    //         } else {
-    //             console.log("You're good.");
-    //         }
-    //     })
-    // }
+    componentDidMount() {
+        API.load().then((response) => {
+            if(response.data.notSignedIn) {
+                this.props.history.push('/');
+            } else {
+                console.log("You're good.");
+            }
+        })
+    }
 
   render() {
     return (

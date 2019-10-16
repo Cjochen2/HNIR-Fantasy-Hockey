@@ -137,6 +137,8 @@ module.exports = {
           console.log(`user found but wrong password(${password})`)
           res.redirect('/');
         } else {
+          console.log("Please go home");
+          
           req.session.user = user.dataValues;
           res.redirect('/home');
         }
