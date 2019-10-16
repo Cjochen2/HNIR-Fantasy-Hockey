@@ -9,6 +9,11 @@ module.exports = function(sequelize, DataTypes) {
       
       allowNull: false
     },
+    team: {
+      type: DataTypes.STRING,
+      
+      allowNull: false
+    },
     gamesPlayed: {
       type: DataTypes.INTEGER,
       allowNull: false
