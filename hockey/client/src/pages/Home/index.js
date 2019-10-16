@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Wrapper from "../../components/Wrapper";
+import Grid, {Container, Row, Col}from "../../components/Grid"
+import API from "../../utils/API";
+import "./style.css";
 
 
 
@@ -8,11 +11,26 @@ import Wrapper from "../../components/Wrapper";
 class Home extends Component {
 
 
+    // componentDidMount() {
+    //     API.load().then((response) => {
+    //         if(response.data.notSignedIn) {
+    //             this.props.history.push('/');
+    //         } else {
+    //             console.log("You're good.");
+    //         }
+    //     })
+    // }
+
   render() {
     return (
-      <Wrapper>
-            <p>You made it HOME!!</p>
-      </Wrapper>
+      <Container>
+
+          <Row >
+           <Col size="md-4">test 1</Col>
+           <Col size="md-4">test 2</Col>
+           <Col size="md-4">test 3</Col>
+          </Row>
+      </Container>
     );
 
   }
