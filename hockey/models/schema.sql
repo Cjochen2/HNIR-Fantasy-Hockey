@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS fanasty_db;
+CREATE DATABASE fanasty_db;
