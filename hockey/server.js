@@ -22,12 +22,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-// app.use(session({
-//   key:'user_sid',
-// 	secret: 'secret',
-// 	resave: false,
-// 	saveUninitialized: false
-// }));
+app.use(session({
+  key:'user_sid',
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: false
+}));
 
 // Clears the cookie in the browser
 app.use((req, res, next) => {
@@ -47,6 +47,7 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
+// {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
 db.sequelize.sync({force: false}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
