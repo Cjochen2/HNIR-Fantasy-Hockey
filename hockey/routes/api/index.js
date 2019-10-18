@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const playerRoutes = require("./players");
-const userRoutes = require("./users");
-// Book routes
+const standingRoutes = require("./standings");
+// API routes
 router.use("/players", playerRoutes);
+
+router.use("/standings", standingRoutes);
 
 // const loginRoutes = require("./loginRoutes")
 

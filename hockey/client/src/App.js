@@ -4,6 +4,7 @@ import Draft from "./pages/Draft/draft";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Jumbotron from "./components/Jumbotron";
+import Draft from "./pages/Draft"
 import LoginBox from "./pages/LoginBox";
 import RegisterBox from "./pages/RegisterBox";
 

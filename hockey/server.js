@@ -141,6 +141,7 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
+// {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
 db.sequelize.sync({force: false}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
