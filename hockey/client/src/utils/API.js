@@ -7,14 +7,28 @@ export default {
         }
         return axios.post("/api/players", requestBody)
     },
+
     getPlayers: function () {
         return axios.get("/api/players")
 
     },
 
-    load: function() {
+    getGoals: function () {
+        return axios.get("/api/standings/goals")
+    },
+
+    getAssists: function () {
+        return axios.get("/api/standings/assists")
+    },
+
+    getPoints: function () {
+        return axios.get("/api/standings/points")
+    },
+
+    load: function () {
         return axios.get("/login")
-    }
+    },
+
 }
 
 

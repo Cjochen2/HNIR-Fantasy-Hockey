@@ -6,12 +6,14 @@ module.exports = {
     db.Stat.findAll({}).then(players => res.json(players))
     .catch(err => res.status(422).json(err));
   },
+
   findById: function (req, res) {
     db.Book
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   create: function (req, res) {
     db.Stat
       .findOne({ where: req.body.where })
@@ -29,6 +31,7 @@ module.exports = {
         }
       })
   },
+
   update: function (req, res) {
     // req.forEach(function (data) {
     //   db.Stat.findOrCreate({where: {name: data.name}});
@@ -40,6 +43,7 @@ module.exports = {
 
 
   },
+
   remove: function (req, res) {
     db.Book
       .findById({ _id: req.params.id })
