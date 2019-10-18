@@ -75,7 +75,7 @@ class Checkout extends Component {
     let label = "Buy your team"
 
     return (
-      <div className="App">
+      <div className="App text-center">
         <StripeCheckout
           allowRememberMe={false}
           amount={amount}
