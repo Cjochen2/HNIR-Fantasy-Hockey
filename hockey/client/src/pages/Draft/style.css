@@ -10,42 +10,48 @@
 
 .image{
 
-    max-width: 50%;
+    max-width: 65%;
     max-height: 25%;
+    padding: 0;
+    margin: 0;
 }
 
 .rules{
-    margin: 100px;
+    margin: 10%;
     background: rgba(204, 204, 204, 0.3);
     border-radius: 25px;
-    position: -webkit-sticky;
-    position: sticky;
     top: 10%;
+    text-align: center;
+    padding: 5%;
 }
 .teamName {
-    margin: 5%;
+    padding: 5%;
     font-family: 'Black Ops One', cursive;
+    border-bottom: solid;
+    max-width: 100%;
+    font-size: 200%;
+
 }
 
 .players {
     text-align: center;
     margin-top: 5%;
     margin-bottom: 5%;
-    max-width: 275px;
+    max-width: 100%;
+    font-size: 110%;
+    border-bottom: solid;
+    padding-bottom: 5%;
     
     
 }
 
 .playerDiv{
     background: rgba(204, 204, 204, 0.3);
-    border-radius: 25px;
+    
 }
 
 .radioBtn {
 float: left;
-
-}
-
-.row.app{
-    text-align: center;
+margin:2% 1em 0 0;
+margin-left: 5%;
 }
