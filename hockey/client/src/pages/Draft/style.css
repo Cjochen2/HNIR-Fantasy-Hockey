@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
+
+.wrapper{
+    background-image: linear-gradient(90deg,red, white, blue);
+}
+
+.p1{
+    font-size: 20px;
+}
+
+.image{
+
+    max-width: 50%;
+    max-height: 25%;
+}
+
+.rules{
+    margin: 100px;
+    background: rgba(204, 204, 204, 0.3);
+    border-radius: 25px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10%;
+}
+.teamName {
+    margin: 5%;
+    font-family: 'Black Ops One', cursive;
+}
+
+.players {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    max-width: 275px;
+    
+    
+}
+
+.playerDiv{
+    background: rgba(204, 204, 204, 0.3);
+    border-radius: 25px;
+}
+
+.radioBtn {
+float: left;
+
+}
+
+.row.app{
+    text-align: center;
+}

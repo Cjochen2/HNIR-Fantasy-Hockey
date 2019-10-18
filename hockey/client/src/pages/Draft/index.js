@@ -47,7 +47,7 @@ class Draft extends Component {
         return (
             <Wrapper>
                 <Teams
-                    players={this.state.players} />
+                    players={this.state.players} />  
                 <StripeCheckout
                     stripeKey="pk_test_EeJm8Zn4FGm23tcNeFpqUFed00FFEazVf1"
                     token={this.onToken}

@@ -1,4 +1,6 @@
 import React from "react";
+import Login from "./pages/Login/login";
+import Draft from "./pages/Draft/draft";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Jumbotron from "./components/Jumbotron";
@@ -20,7 +22,8 @@ function App () {
         <Route exact path="/registration" component={RegisterBox} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/draft" component={Draft} />
-      <Route component={LoginBox} />
+        
+      
       </Switch>
 
      
