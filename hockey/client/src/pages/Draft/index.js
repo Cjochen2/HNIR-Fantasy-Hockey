@@ -1,39 +1,36 @@
 /* eslint-disable no-loop-func */
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
 import Wrapper from "../../components/Wrapper";
-import axios from "axios";
-import cheerio from "cheerio";
 import API from "../../utils/API";
 import Teams from "../../components/Teams";
-import StripeCheckout from 'react-stripe-checkout';
-
+import Checkout from "../../components/Checkout";
+import Grid, { Container, Row, Col } from "../../components/Grid";
+import "./style.css";
 
 class Draft extends Component {
     state = {
         players: [],
+        
     }
     handleFormSubmit(formSubmitEvent) {
         formSubmitEvent.preventDefault();
 
     }
-    onToken = (token, addresses) => {
-        // TODO: Send the token information and any other
-        // relevant information to your payment process
-        // server, wait for the response, and update the UI
-        // accordingly. How this is done is up to you. Using
-        // XHR, fetch, or a GraphQL mutation is typical.
-    };
-    componentDidMount() {
     
+    componentDidMount() {
+        // API.load().then((response) => {
+        //     if(response.data.notSignedIn) {
+        //         this.props.history.push('/');
+        //     } else {
+        //         console.log("You're good.");
+        //     }
+        // });
+
         API.getPlayers().then(players => {
-            console.log(players.data)
             this.setState(
                 { players: players.data }
             )
         })
-
-        
     };
 
     handleOptionChange(changeEvent) {
@@ -41,23 +38,54 @@ class Draft extends Component {
             selectedOption: changeEvent.target.value
         });
     }
-
+    
 
     render() {
+        
+
         return (
+
+
             <Wrapper>
+                <Row >
+            <Col size="md-12"><div className="rules"><img src={require("./images/hnir1.png")} className= "image" alt="logo"/><h1>Rules of the Draft:</h1><p className="p1">Welcome to the HNIR draft! When you are ready to selcet your team, you will pick one player from each team. Once you have selected your 5 players hit the "Buy team" button at the bottom of the page to purchase your team. Fill out all of the necessary fields and once complete,you will be ready to climb the ranks to be crowned fanasty champion!</p>
+            
+            </div></Col>
+            <Col size="md-1" />
+            <Col size="md-3" />
+            </Row>
+            <Row>
+            <Col size="md-1" />
+                <Col size="md-2">
                 <Teams
-                    players={this.state.players} />  
-                <StripeCheckout
-                    stripeKey="pk_test_EeJm8Zn4FGm23tcNeFpqUFed00FFEazVf1"
-                    token={this.onToken}
-                    amount="500"
-                    description="Fanasty Hockey Team"
-                    label="Purchase Team"
-                    locale="auto"
-                    name="HNIR Fanasty Hockey"
-                    zipCode
-                />
+                teamName= "Kelly's Heroes"
+                    players={this.state.players} />
+                    </Col>
+                    <Col size="md-2">
+                <Teams
+                    teamName= "The Boys"
+                    players={this.state.players} />
+                    </Col>
+                    <Col size="md-2">
+                <Teams
+                teamName= "Double Deuce"
+                    players={this.state.players} />
+                    </Col>
+                    <Col size="md-2">
+                <Teams
+                teamName= "Cowley's Chaos"
+                    players={this.state.players} />
+                    </Col>
+                    <Col size="md-2">
+                <Teams
+                teamName= "Buzzed Hockey Club"
+                    players={this.state.players} />
+                    </Col>
+                <Col size="md-1" />
+                </Row>
+                <Row>
+                <Checkout />
+                </Row>
             </Wrapper>
         )
     }

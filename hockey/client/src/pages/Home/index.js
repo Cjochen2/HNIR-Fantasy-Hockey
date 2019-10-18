@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Wrapper from "../../components/Wrapper";
-import Grid, { Container, Row, Col } from "../../components/Grid"
+import { Container, Row, Col } from "../../components/Grid"
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import API from "../../utils/API";
-import "./style.css";
 import Standings from "../../components/Standings";
 import { FormBtn } from "../../components/Form";
+import "./style.css";
 
 
 
@@ -45,6 +46,8 @@ class Home extends Component {
     });
   }
 
+
+
   render() {
     return (
       <Container>
@@ -79,7 +82,8 @@ class Home extends Component {
           this is where Fantasy Standings go
           </Col>
         </Row>
-        <Row><FormBtn>Buy a New Team</FormBtn></Row>
+        <Row>
+          <Link to="/draft"><FormBtn >Buy a New Team</FormBtn></Link></Row>
       </Container>
     );
 

@@ -1,7 +1,5 @@
 import React from "react";
-import Login from "./pages/Login/login";
-import Draft from "./pages/Draft/draft";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Jumbotron from "./components/Jumbotron";
 import Draft from "./pages/Draft"
