@@ -25,7 +25,10 @@ class Checkout extends Component {
       show: !state.show
     }));
   };
-
+  handleClick = () => {
+    console.log("test");
+    
+  };
   handleToken = (token, addresses) => {
     console.log("App#handleToken");
     console.log(token);
@@ -58,12 +61,12 @@ class Checkout extends Component {
       .then(result => {
         console.log("result");
         console.log(result);
+        this.props.saveTeam();
       })
       .catch(error => {
         console.log("error");
         console.error(
-          error,
-          "You may need to refresh the server sandbox. It hibernates due to inactivity."
+          error
         );
       });
   };

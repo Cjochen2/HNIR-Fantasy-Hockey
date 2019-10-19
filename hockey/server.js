@@ -34,12 +34,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  const html = `
-    <p>Welcome. Be sure to configure your Stripe test mode secret key after you have forked this sandbox.</p>
-  `;
-  res.send(html);
-});
+// app.get("/", (req, res) => {
+//   const html = `
+//     <p>Welcome. Be sure to configure your Stripe test mode secret key after you have forked this sandbox.</p>
+//   `;
+//   res.send(html);
+// });
 
 app.post("/charge", upload.none(), cors(), async (req, res) => {
   console.log(JSON.stringify(req.body));

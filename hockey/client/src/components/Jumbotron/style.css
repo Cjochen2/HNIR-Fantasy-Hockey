@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Quantico&display=swap');
+
+.jumbotron{
+    font-family: 'Quantico', sans-serif;
+    font-size: 250%;
+    color: rgb(139, 9, 9);
+    max-width: 100%;
+    background-image: url("../../pages/Draft/images/bg2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 0;
+    
+}
+
+.image1{
+    float: left;
+    max-width: 15%;
+    max-height: 5%;
+    margin-bottom: 50%;
+}
+
+.image2{
+    float: right;
+    max-width: 15%;
+    max-height: 5%;
+}
