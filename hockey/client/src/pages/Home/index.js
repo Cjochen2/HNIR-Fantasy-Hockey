@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import React, { Component } from "react";
 import Wrapper from "../../components/Wrapper";
 import { Container, Row, Col } from "../../components/Grid"
@@ -16,6 +17,7 @@ class Home extends Component {
     goals: [],
     assists: [],
     points: [],
+    standing: []
   }
 
   componentDidMount() {
@@ -26,7 +28,7 @@ class Home extends Component {
     //     console.log("You're good.");
     //   }
     // });
-
+  
     API.getGoals().then(goals => {
       this.setState(
         { goals: goals.data }
@@ -46,48 +48,52 @@ class Home extends Component {
     });
   }
 
+  
 
 
   render() {
     return (
       <Container>
 
-        <Row >
-          <Col size="md-3">
-            <Standings
-              title="Goal Leaders"
-              rankings="Goals"
-              standings={this.state.goals}
-            />
-          </Col>
-          <Col size="md-3">
-            <Standings
-              title="Assist Leaders"
-              rankings="Assists"
-              standings={this.state.assists}
-            />
-          </Col>
-          <Col size="md-3">
-            <Standings
-              title="Points Leaders"
-              rankings="Points"
-              standings={this.state.points}
-            />
-            </Col>
-          <Col size="md-3">
-          <Standings
-              title="HNIR League Standings"
-              rankings="Total Points"
-              standings={this.state.points}
-            />
-          </Col>
+        <Row className="hs" >
+          
+            <div className="homeStats">
+              <Col size="md-3">
+                <Standings
+                  title="Goal Leaders"
+                  rankings="Goals"
+                  standings={this.state.goals}
+                />
+              </Col>
+            </div>
+            <div className="homeStats1">
+              <Col size="md-3">
+                <Standings
+                  title="Assist Leaders"
+                  rankings="Assists"
+                  standings={this.state.assists}
+                />
+              </Col>
+            </div>
+            <div className="homeStats2">
+              <Col size="md-3"><Standings
+                title="Points Leaders"
+                rankings="Points"
+                standings={this.state.points}
+              /></Col>
+            </div>
+            {/* <Col size="md-3"><Standings
+             title="HNIR League Standings"
+             rankings="Total Points"
+             standings={this.state.standing}
+           /></Col> */}
         </Row>
         <Row>
           <Col size="md-6">
-          this is where User teams go
+            this is where User teams go
           </Col>
           <Col size="md-6">
-          this is where Fantasy Standings go
+            this is where Fantasy Standings go
           </Col>
         </Row>
         <Row>

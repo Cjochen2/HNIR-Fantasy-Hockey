@@ -41,8 +41,7 @@ function Standings(props) {
                                     <th className="stat">{info.points}</th>
                                 </tr>)
                             }
-
-                            if (props.rankings === "Standings"){
+                            if (props.rankings === "Total Points"){
                                 return (<tr>
                                     <th>{i + 1}</th>
                                     <th>{info.team}</th>

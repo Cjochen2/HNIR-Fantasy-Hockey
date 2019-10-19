@@ -5,27 +5,22 @@ module.exports = function(sequelize, DataTypes) {
         //     type: DataTypes.STRING,
         //     allowNull: false
         // },
-
         p1: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         p2: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         p3: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         p4: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         p5: {
             type: DataTypes.STRING,
             allowNull: false
