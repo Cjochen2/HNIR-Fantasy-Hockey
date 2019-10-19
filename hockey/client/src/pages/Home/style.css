@@ -1,3 +1,20 @@
 .table-title, .list-header, .stat {
     text-align: center;
 }
+
+.homeStats{
+    font-size: 75%;
+    width: 25%;
+    height: 10%;
+}
+.homeStats1{
+    font-size: 75%;
+    width: 25%;
+    height: 10%;
+}
+.homeStats2{
+    font-size: 75%;
+    width: 25%;
+    max-height: 5%;
+}
+

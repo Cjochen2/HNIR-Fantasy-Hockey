@@ -29,6 +29,10 @@ export default {
         return axios.get("/login")
     },
 
+    saveTeam: function name(team) {
+        return axios.post("/api/team", {team: team})
+    }
+
 }
 
 
