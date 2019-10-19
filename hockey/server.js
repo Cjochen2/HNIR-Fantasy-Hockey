@@ -9,7 +9,6 @@ const db = require("./models");
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const mysql = require("mysql2");
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const multer = require("multer");
@@ -28,19 +27,35 @@ app.use(require("body-parser").text());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cookieParser());
+app.use(morgan('dev'));
+//Used for stripe testing purposes
 app.use((req, res, next) => {
   req.user = { id: "asdfasdfasdfasdf" };
   next();
 });
-
-app.get("/", (req, res) => {
-  const html = `
-    <p>Welcome. Be sure to configure your Stripe test mode secret key after you have forked this sandbox.</p>
-  `;
-  res.send(html);
+//Session infomation storage
+app.use(session({
+  key: 'user_sid',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+// Clears the cookie in the browser
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+    res.clearCookie('user_sid');
+  }
+  next();
 });
+// Send every request to the React app
+// Define any API routes before this runs
+app.use(routes);
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+});
+//Stripe Checkout System
 app.post("/charge", upload.none(), cors(), async (req, res) => {
   console.log(JSON.stringify(req.body));
 
@@ -69,11 +84,8 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
       stripeToken,
       stripeTokenType
     } = req.body;
-
     // TODO: Assert not a CSRF.
-
-    let amount = 500;
-  
+ let amount = 500;
     // TODO: Lookup existing customer or create a new customer.
     // TODO: Save relevant billing and shipping address information.
     const customer = await stripe.customers.create({
@@ -102,49 +114,20 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
     } else {
       throw Error(`Unrecognized Stripe token type: "${stripeTokenType}"`);
     }
-
     status = "success";
   } catch (err) {
     console.error(err);
     error = err;
   }
-
   res.json({ error, status });
 });
 //end of stripe server
 
-app.use(cookieParser());
-app.use(morgan('dev'));
 
-
-app.use(session({
-  key:'user_sid',
-	secret: 'secret',
-	resave: false,
-	saveUninitialized: false
-}));
-
-// Clears the cookie in the browser
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-      res.clearCookie('user_sid');        
-  }
-  next();
-});
-
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.use(routes);
-
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
 
 // {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
-db.sequelize.sync({force: false}).then(function () {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
 });
-

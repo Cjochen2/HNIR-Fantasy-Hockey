@@ -12,7 +12,7 @@ function Teams(props) {
                         (props.players.map((info, i) => {
                             if (info.team === props.teamName) {
                                 return (<div>
-                                    <input type="radio" value={i} name={props.teamName} defaultChecked={props.selectedOption === 'deuce'}
+                                    <input type="radio" value={i} id={info.id} /*playerName={info.name}*/ name={props.teamName} defaultChecked={props.selectedOption === 'deuce'}
                                         onChange={props.handleOptionChange} className="radioBtn" /><h3 className="players">{info.name}</h3>
                                 </div>
                                 )

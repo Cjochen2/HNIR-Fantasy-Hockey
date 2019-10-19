@@ -67,12 +67,20 @@ class Home extends Component {
               standings={this.state.assists}
             />
           </Col>
-          <Col size="md-3"><Standings
+          <Col size="md-3">
+            <Standings
               title="Points Leaders"
               rankings="Points"
               standings={this.state.points}
-            /></Col>
-          <Col size="md-3">HNIR League Standings</Col>
+            />
+            </Col>
+          <Col size="md-3">
+          <Standings
+              title="HNIR League Standings"
+              rankings="Total Points"
+              standings={this.state.points}
+            />
+          </Col>
         </Row>
         <Row>
           <Col size="md-6">
