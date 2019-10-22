@@ -81,7 +81,8 @@ class Home extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <Wrapper >
+        <div className="homeWrap" >
       <Nav onClick={this.handleClick.bind(this)}/>
       <Container>
            <Row>
@@ -98,13 +99,13 @@ class Home extends Component {
         </Row>
 
         <Row>
-          <Link to="/draft"><FormBtn >Buy a New Team</FormBtn></Link>
+          <Link to="/draft" className="m-auto"><FormBtn >Buy a New Team</FormBtn></Link>
         </Row>
 
         <Row className="hs" >
 
-          <div className="homeStats">
-            <Col size="md-3">
+          <div className="homeStats col-md-4">
+            <Col size="md-12">
               <Standings
                 title="Goal Leaders"
                 rankings="Goals"
@@ -112,8 +113,8 @@ class Home extends Component {
               />
             </Col>
           </div>
-          <div className="homeStats1">
-            <Col size="md-3">
+          <div className="homeStats1 col-md-4">
+            <Col size="md-12">
               <Standings
                 title="Assist Leaders"
                 rankings="Assists"
@@ -121,8 +122,8 @@ class Home extends Component {
               />
             </Col>
           </div>
-          <div className="homeStats2">
-            <Col size="md-3"><Standings
+          <div className="homeStats2 col-md-4">
+            <Col size="md-12"><Standings
               title="Points Leaders"
               rankings="Points"
               standings={this.state.points}
@@ -136,6 +137,7 @@ class Home extends Component {
         </Row>
 
       </Container>
+      </div>
       </Wrapper>
     );
 
