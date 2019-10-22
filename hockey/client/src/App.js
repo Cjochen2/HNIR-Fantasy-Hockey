@@ -12,7 +12,7 @@ function App () {
     return (
           
       <Router>
-              <Jumbotron>Welcome to HNIR Draft Challenge</Jumbotron>
+              <Jumbotron>HNIR Draft Challenge</Jumbotron>
       
       <Switch>
      

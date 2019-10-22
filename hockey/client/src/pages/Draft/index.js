@@ -5,7 +5,9 @@ import API from "../../utils/API";
 import DraftTeams from "../../components/DraftTeams";
 import Checkout from "../../components/Checkout";
 import { Row, Col } from "../../components/Grid";
-import { Input } from "../../components/Form"
+import { Input, Message } from "../../components/Form"
+import {Logout} from "../../components/Logout"
+import Nav from "../../components/Nav"
 import "./style.css";
 class Draft extends Component {
     state = {
@@ -29,6 +31,14 @@ class Draft extends Component {
             )
         })
     };
+
+    handleClick() {
+        API.logout().then((response) => {
+          if (response.data.signedOut) {
+            this.props.history.push('/');
+          };
+        });
+      };
 
     saveTeam() {
         console.log(this.state.team);
@@ -86,7 +96,8 @@ class Draft extends Component {
 
     render() {
         return (
-            <Wrapper className="dPage">
+            <Wrapper>
+                <Nav onClick={this.handleClick.bind(this)}/>
                 <Col size="md-12">
                     <div className="rules">
                         <img src={require("./images/hnir1.png")} className="image" alt="logo" /><h1>Rules of the Draft</h1><p className="p1">Welcome to the HNIR draft! When you are ready to select your team, you will pick one player from each team. Once you have selected your 5 players hit the "Buy team" button at the bottom of the page to purchase your team. Fill out all of the necessary fields and once complete,you will be ready to climb the ranks to be crowned fanasty champion!</p>
@@ -140,9 +151,10 @@ class Draft extends Component {
                 </Row>
                 <Row>
                     <Col size="md-12">
-                        {this.state.submit && <Checkout
-                            saveTeam={this.saveTeam.bind(this)} />}
+                        {this.state.submit && <Checkout saveTeam={this.saveTeam.bind(this)} />}
+                        {!this.state.submit && <Message message="Please make sure to have selected 1 player from each team and to have entered in a Team Name"/>}
                     </Col>
+                    
                 </Row>
             </Wrapper>
         )
