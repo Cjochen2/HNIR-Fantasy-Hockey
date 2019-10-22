@@ -97,6 +97,7 @@ class Draft extends Component {
     render() {
         return (
             <Wrapper>
+                <div className="divWrap">
                 <Nav onClick={this.handleClick.bind(this)}/>
                 <Col size="md-12">
                     <div className="rules">
@@ -104,7 +105,7 @@ class Draft extends Component {
                     </div>
                 </Col>
                 <Row>
-                    
+                    <Col size="md-1"></Col>
                     <Col size="md-2">
                         <DraftTeams
                             teamName="Kelly's Heroes"
@@ -136,9 +137,10 @@ class Draft extends Component {
                             players={this.state.players}
                             handleOptionChange={this.handleOptionChange.bind(this)} />
                     </Col>
-                    
+                    <Col size="md-1"></Col>
                 </Row>
                 <Row>
+                <Col size="md-5"/>
                     <Col size="md-2">
                         Team Name:
                     <Input
@@ -148,6 +150,7 @@ class Draft extends Component {
                             placeholder="Input Your Team Name"
                         />
                     </Col>
+                <Col size="md-5"/>
                 </Row>
                 <Row>
                     <Col size="md-12">
@@ -156,6 +159,7 @@ class Draft extends Component {
                     </Col>
                     
                 </Row>
+                </div>
             </Wrapper>
         )
     }

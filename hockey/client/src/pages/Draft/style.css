@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Ops+One&display=swap');
 
-.wrapper{
-    background-image: linear-gradient(90deg,red, white, blue);
-}
 
 .p1{
     font-size: 20px;
@@ -56,4 +53,18 @@
 float: left;
 margin:2% 1em 0 0;
 margin-left: 5%;
+}
+
+.teamCol{
+    text-align: center;
+}
+
+.message{
+    text-align: center;
+    font-size: 150%;
+}
+.divWrap{
+    background-image: url("./images/chris-liverani-5oZ9uVx7buc-unsplash.jpg");
+   border-top: 3px solid;
+    background-repeat: no-repeat;
 }

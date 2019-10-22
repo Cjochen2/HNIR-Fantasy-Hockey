@@ -4,13 +4,14 @@ import React from "react";
 
 function UserTeams(props) {
     return (
+        <div className="team">
         <div className="table">
             <div className="table-title">
                 <h3>{props.title}</h3>
             </div>
 
             <div className="userTeam-rankings">
-                <table>
+                <table className="m-auto">
                     <tr>
                         <th className="list-header">Rank</th>
                         <th className="list-header">Name</th>
@@ -28,6 +29,7 @@ function UserTeams(props) {
                     }
                 </table>
             </div>
+        </div>
         </div>
     );
 }
