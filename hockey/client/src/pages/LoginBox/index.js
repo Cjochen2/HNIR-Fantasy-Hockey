@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 import API from '../../utils/API'
 
 
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -59,8 +60,6 @@ const styles = theme => ({
 
 class SignIn extends Component {
 
-
-
   componentDidMount() {
     this.scrape();
 
@@ -72,60 +71,59 @@ class SignIn extends Component {
       }
     });
   }
-
-  scrape() {
-    const teams = [
-      {
-        id: 4909229,
-        team: "The Boys"
-      },
-      {
-        id: 4909227,
-        team: "Buzzed Hockey Club"
-      },
-      {
-        id: 4909228,
-        team: "Cowley's Chaos"
-      },
-      {
-        id: 4965687,
-        team: "Double Deuce"
-      },
-      {
-        id: 4909226,
-        team: "Kelly's Heroes"
+    scrape() {
+      const teams = [
+        {
+          id: 4909229,
+          team: "The Boys"
+        },
+        {
+          id: 4909227,
+          team: "Buzzed Hockey Club"
+        },
+        {
+          id: 4909228,
+          team: "Cowley's Chaos"
+        },
+        {
+          id: 4965687,
+          team: "Double Deuce"
+        },
+        {
+          id: 4909226,
+          team: "Kelly's Heroes"
+        }
+      ]
+  
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  
+      for (var j = 0; j < teams.length; j++) {
+        let globe = teams[j].id;
+        let teamName = teams[j].team;
+  
+        axios.get(proxyurl + "https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
+          .then(function (response) {
+  
+            var $ = cheerio.load(response.data);
+  
+            $("#player-sm-division-ice_hockey_skater-table").children('tbody').children('tr').each(function (i, element) {
+              let goals =$(element).children().eq(3).text().trim()
+              let assists = $(element).children().eq(4).text().trim()
+              let player = {
+                jerseyNumber: $(element).children(".jersey-number").text().trim() || 0,
+                name: $(element).children(".statPlayer").text().trim(),
+                team: teamName,
+                gamesPlayed: $(element).children().eq(2).text().trim(),
+                goals: goals,
+                assists: assists,
+                points: parseInt(goals) + parseInt(assists)
+              };
+              API.addPlayer(player);
+  
+            });
+          })
       }
-    ]
-
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-
-    for (var j = 0; j < teams.length; j++) {
-      let globe = teams[j].id;
-      let teamName = teams[j].team;
-
-      axios.get(proxyurl + "https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
-        .then(function (response) {
-
-          var $ = cheerio.load(response.data);
-
-          $("#player-sm-division-ice_hockey_skater-table").children('tbody').children('tr').each(function (i, element) {
-            let goals =$(element).children().eq(3).text().trim()
-            let assists = $(element).children().eq(4).text().trim()
-            let player = {
-              jerseyNumber: $(element).children(".jersey-number").text().trim() || 0,
-              name: $(element).children(".statPlayer").text().trim(),
-              team: teamName,
-              gamesPlayed: $(element).children().eq(2).text().trim(),
-              goals: goals,
-              assists: assists,
-              points: parseInt(goals) + parseInt(assists)
-            };
-            API.addPlayer(player);
-
-          });
-        })
-    }
-  }
+    };
 
 
   render() {

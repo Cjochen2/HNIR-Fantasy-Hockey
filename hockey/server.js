@@ -9,41 +9,29 @@ const db = require("./models");
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const mysql = require("mysql2");
-
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const multer = require("multer");
 const Stripe = require("stripe");
 const uuidv4 = require("uuid/v4");
-
+const cron = require("node-cron");
+// const scrape = require("./scripts/playerScrape");
 // TODO: Configure with your test mode secret key.
 const apiKeySecret = process.env.SECRET_TEST;
 const stripe = Stripe(apiKeySecret);
 const upload = multer();
-
 //Begin of stripe server
 app.use(require("body-parser").text());
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use((req, res, next) => {
   req.user = { id: "asdfasdfasdfasdf" };
   next();
 });
 
-// app.get("/", (req, res) => {
-//   const html = `
-//     <p>Welcome. Be sure to configure your Stripe test mode secret key after you have forked this sandbox.</p>
-//   `;
-//   res.send(html);
-// });
-
 app.post("/charge", upload.none(), cors(), async (req, res) => {
   console.log(JSON.stringify(req.body));
-
   let error;
   let status = "failed";
   try {
@@ -69,9 +57,7 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
       stripeToken,
       stripeTokenType
     } = req.body;
-
     // TODO: Assert not a CSRF.
-
     let amount = 500;
   
     // TODO: Lookup existing customer or create a new customer.
@@ -83,7 +69,6 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
         userId: req.user.id
       }
     });
-
     if (stripeTokenType === "card") {
       const idempotency_key = uuidv4();
       const charge = await stripe.charges.create(
@@ -102,28 +87,22 @@ app.post("/charge", upload.none(), cors(), async (req, res) => {
     } else {
       throw Error(`Unrecognized Stripe token type: "${stripeTokenType}"`);
     }
-
     status = "success";
   } catch (err) {
     console.error(err);
     error = err;
   }
-
   res.json({ error, status });
 });
 //end of stripe server
-
 app.use(cookieParser());
 app.use(morgan('dev'));
-
-
 app.use(session({
   key:'user_sid',
-	secret: 'secret',
-	resave: false,
-	saveUninitialized: false
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
 }));
-
 // Clears the cookie in the browser
 app.use((req, res, next) => {
   if (req.cookies.user_sid && !req.session.user) {
@@ -131,8 +110,6 @@ app.use((req, res, next) => {
   }
   next();
 });
-
-
 // Send every request to the React app
 // Define any API routes before this runs
 app.use(routes);
@@ -141,10 +118,17 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
+// cron.schedule("10 * * * * *", function(){
+//   console.log("-------------------------------");
+//   console.log("Running Cron Job");
+//   scrape.players();
+// })
 // {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
 db.sequelize.sync({force: false}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
 });
+
+
 
