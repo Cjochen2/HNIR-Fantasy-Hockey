@@ -39,11 +39,17 @@ module.exports = {
           console.log(`user found but wrong password(${password})`)
           res.redirect('/');
         } else {
-          console.log("Please go home");
           
           req.session.user = user.dataValues;
           res.redirect('/home');
         }
       });
   },
+
+  logout: function (req, res) {
+    if (req.session.user && req.cookies.user_sid) {
+      res.clearCookie('user_sid');
+      res.json({signedOut: true})
+    }
+  }
 };

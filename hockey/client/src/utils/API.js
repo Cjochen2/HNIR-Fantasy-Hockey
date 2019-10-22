@@ -25,14 +25,29 @@ export default {
         return axios.get("/api/standings/points")
     },
 
+    getUserTeams: function () {
+        return axios.get("/api/standings/userTeams")
+    },
+
+    getLeagueTeams: function () {
+        return axios.get("/api/standings/leagueTeams")
+    },
+
     load: function () {
         return axios.get("/login")
     },
 
-    saveTeam: function name(team) {
-        return axios.post("/api/team", {team: team})
-    }
+    logout: function () {
+        return axios.get("/login/logout")
+    },
 
+    saveTeam: function (teamData, teamName) {
+        const requestBody = {
+            team: teamData,
+            userTeam: teamName
+        }
+        return axios.post("/api/team", requestBody)
+    },
 }
 
 

@@ -1,5 +1,4 @@
 var bcrypt = require('bcrypt');
-var Teams = require('./team')
 
 
 module.exports = function (sequelize, DataTypes) {

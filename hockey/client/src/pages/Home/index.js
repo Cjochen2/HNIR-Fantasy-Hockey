@@ -7,6 +7,9 @@ import API from "../../utils/API";
 import Standings from "../../components/Standings";
 import { FormBtn } from "../../components/Form";
 import "./style.css";
+import UserTeams from "../../components/UserTeams";
+import { Logout } from "../../components/Logout"
+import App from "../../App";
 
 
 
@@ -17,18 +20,20 @@ class Home extends Component {
     goals: [],
     assists: [],
     points: [],
-    standing: []
+    standing: [],
+    userTeams: [],
+    leagueTeams: []
   }
 
   componentDidMount() {
-    // API.load().then((response) => {
-    //   if (response.data.notSignedIn) {
-    //     this.props.history.push('/');
-    //   } else {
-    //     console.log("You're good.");
-    //   }
-    // });
-  
+    API.load().then((response) => {
+      if (response.data.notSignedIn) {
+        this.props.history.push('/');
+      } else {
+        console.log("You're good.");
+      }
+    });
+
     API.getGoals().then(goals => {
       this.setState(
         { goals: goals.data }
@@ -46,58 +51,93 @@ class Home extends Component {
         { points: points.data }
       )
     });
-  }
 
-  
+    API.getUserTeams().then(teams => {
+      this.setState(
+        { userTeams: teams.data }
+      );
+    });
+
+    API.getLeagueTeams().then(teams => {
+      this.setState(
+        { leagueTeams: teams.data }
+      )
+    })
+  };
+
+  handleClick() {
+    API.logout().then((response) => {
+      if (response.data.signedOut) {
+        this.props.history.push('/');
+      };
+    });
+  };
+
+
+
+
 
 
   render() {
     return (
       <Container>
 
+        <Logout
+          onClick={this.handleClick.bind(this)}
+        >
+          Log Out
+           </Logout>
+           <Row>
+          <Col size="md-6">
+            <UserTeams
+              table="My Teams"
+              teams={this.state.userTeams} />
+          </Col>
+          <Col size="md-6">
+            <UserTeams
+              table="League Standings"
+              teams={this.state.leagueTeams} />
+          </Col>
+        </Row>
+
+        <Row>
+          <Link to="/draft"><FormBtn >Buy a New Team</FormBtn></Link>
+        </Row>
+
         <Row className="hs" >
-          
-            <div className="homeStats">
-              <Col size="md-3">
-                <Standings
-                  title="Goal Leaders"
-                  rankings="Goals"
-                  standings={this.state.goals}
-                />
-              </Col>
-            </div>
-            <div className="homeStats1">
-              <Col size="md-3">
-                <Standings
-                  title="Assist Leaders"
-                  rankings="Assists"
-                  standings={this.state.assists}
-                />
-              </Col>
-            </div>
-            <div className="homeStats2">
-              <Col size="md-3"><Standings
-                title="Points Leaders"
-                rankings="Points"
-                standings={this.state.points}
-              /></Col>
-            </div>
-            {/* <Col size="md-3"><Standings
+
+          <div className="homeStats">
+            <Col size="md-3">
+              <Standings
+                title="Goal Leaders"
+                rankings="Goals"
+                standings={this.state.goals}
+              />
+            </Col>
+          </div>
+          <div className="homeStats1">
+            <Col size="md-3">
+              <Standings
+                title="Assist Leaders"
+                rankings="Assists"
+                standings={this.state.assists}
+              />
+            </Col>
+          </div>
+          <div className="homeStats2">
+            <Col size="md-3"><Standings
+              title="Points Leaders"
+              rankings="Points"
+              standings={this.state.points}
+            /></Col>
+          </div>
+          {/* <Col size="md-3"><Standings
              title="HNIR League Standings"
              rankings="Total Points"
              standings={this.state.standing}
            /></Col> */}
         </Row>
-        <Row>
-          <Col size="md-6">
-            this is where User teams go
-          </Col>
-          <Col size="md-6">
-            this is where Fantasy Standings go
-          </Col>
-        </Row>
-        <Row>
-          <Link to="/draft"><FormBtn >Buy a New Team</FormBtn></Link></Row>
+
       </Container>
     );
 
