@@ -9,6 +9,7 @@ import { FormBtn } from "../../components/Form";
 import "./style.css";
 import UserTeams from "../../components/UserTeams";
 import { Logout } from "../../components/Logout"
+import Nav from "../../components/Nav"
 import App from "../../App";
 
 
@@ -80,22 +81,18 @@ class Home extends Component {
 
   render() {
     return (
+      <Wrapper>
+      <Nav onClick={this.handleClick.bind(this)}/>
       <Container>
-
-        <Logout
-          onClick={this.handleClick.bind(this)}
-        >
-          Log Out
-           </Logout>
            <Row>
           <Col size="md-6">
             <UserTeams
-              table="My Teams"
+              title="My Teams"
               teams={this.state.userTeams} />
           </Col>
           <Col size="md-6">
             <UserTeams
-              table="League Standings"
+              title="League Standings"
               teams={this.state.leagueTeams} />
           </Col>
         </Row>
@@ -139,6 +136,7 @@ class Home extends Component {
         </Row>
 
       </Container>
+      </Wrapper>
     );
 
   }
