@@ -25,3 +25,11 @@ export function FormBtn(props) {
     </button>
   );
 }
+
+export function Message(props) {
+  return (
+    <div className="message">
+      {props.message}
+    </div>
+  );
+}
