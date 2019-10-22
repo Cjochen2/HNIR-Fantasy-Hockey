@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt');
 
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
-
         id: {
             type: DataTypes.INTEGER,
             unique: true,
@@ -11,7 +10,6 @@ module.exports = function (sequelize, DataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-
         firstName: {
             type: DataTypes.STRING,
             allowNull: false
@@ -29,16 +27,12 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-
     });
-
    
     User.beforeCreate((user, options) => {
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(user.password, salt);
     });
-
-
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
     };

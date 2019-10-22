@@ -51,7 +51,6 @@ class Draft extends Component {
                 if (array[i].team === changeEvent.target.name) {
                     console.log(array[i].team);
                     console.log(changeEvent.target.name);
-
                     array.splice(i, 1);
                 }
             }
@@ -94,7 +93,7 @@ class Draft extends Component {
                     </div>
                 </Col>
                 <Row>
-                    <Col size="md-1" />
+                    
                     <Col size="md-2">
                         <DraftTeams
                             teamName="Kelly's Heroes"
@@ -126,7 +125,7 @@ class Draft extends Component {
                             players={this.state.players}
                             handleOptionChange={this.handleOptionChange.bind(this)} />
                     </Col>
-                    <Col size="md-1" />
+                    
                 </Row>
                 <Row>
                     <Col size="md-2">

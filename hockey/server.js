@@ -124,7 +124,7 @@ app.get("*", function(req, res) {
 //   scrape.players();
 // })
 // {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
-db.sequelize.sync({force: false}).then(function () {
+db.sequelize.sync({force: true}).then(function () {
   app.listen(PORT, function () {
     console.log(`🌎 ==> API server now on port ${PORT}!`);
   });
