@@ -8,13 +8,7 @@ router.use("/players", playerRoutes);
 router.use("/standings", standingRoutes);
 
 router.use("/team", teamRoutes)
-// const loginRoutes = require("./loginRoutes")
 
-// Book routes
-//router.use("/players", playerRoutes);
 
-// router.use("/user", userRoutes)
-
-// router.use("/registration", loginRoutes)
 
 module.exports = router;

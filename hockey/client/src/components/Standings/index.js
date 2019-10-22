@@ -16,7 +16,7 @@ function Standings(props) {
                         <th className="list-header">{props.rankings}</th>
                     </tr>
                     {
-                        (props.standings.slice(0, 10).map((info, i) => {
+                        (props.standings.slice(0, 5).map((info, i) => {
 
                             if (props.rankings === "Goals") {
                                 return (<tr>

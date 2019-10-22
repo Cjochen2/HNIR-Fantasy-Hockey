@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var stats = sequelize.define("Stat", {
+  var Stats = sequelize.define("Stat", {
     jerseyNumber: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -36,5 +36,5 @@ module.exports = function(sequelize, DataTypes) {
     }
 
   });
-  return stats;
+  return Stats;
 };

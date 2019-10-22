@@ -14,6 +14,7 @@ router.route("/")
     .get(sessionChecker, loginController.load)
     .post(loginController.login);
 
-
+router.route("/logout")
+    .get(loginController.logout)
 
 module.exports = router;

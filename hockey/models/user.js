@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt');
-var Teams = require('./team')
+
+
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
         id: {
@@ -35,8 +36,10 @@ module.exports = function (sequelize, DataTypes) {
     User.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
     };
+
     User.associate = function(models) {
         models.User.hasMany(models.Team)
     }
+
     return User;
 };

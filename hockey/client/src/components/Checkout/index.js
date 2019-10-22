@@ -4,7 +4,7 @@ import StripeCheckout from 'react-stripe-checkout';
 const stripeApiKey = "pk_test_EeJm8Zn4FGm23tcNeFpqUFed00FFEazVf1";
 class Checkout extends Component {
   state = {
-    product: "Fanasty Hockey Team",
+    product: "Fantasy Hockey Team",
     show: true
   };
 
@@ -25,10 +25,7 @@ class Checkout extends Component {
       show: !state.show
     }));
   };
-  handleClick = () => {
-    console.log("test");
-    
-  };
+  
   handleToken = (token, addresses) => {
     console.log("App#handleToken");
     console.log(token);
