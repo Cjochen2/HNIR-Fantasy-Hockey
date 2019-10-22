@@ -1,21 +1,32 @@
 .table-title, .list-header, .stat {
+    text-align: left;
+    margin-left: 10%;
+}
+.col-md-6 .table .table-title {
     text-align: center;
+    margin-left: 0;
 }
 
 .homeStats{
     font-size: 75%;
     width: 25%;
     height: 10%;
+    background: rgba(247, 233, 233, 0.575);
+    margin-top: 5%;
 }
 .homeStats1{
     font-size: 75%;
     width: 25%;
     height: 10%;
+    background: rgba(124, 13, 13, 0.555);
+    margin-top: 5%;
 }
 .homeStats2{
     font-size: 75%;
     width: 25%;
     max-height: 5%;
+    background: rgba(247, 233, 233, 0.575);
+    margin-top: 5%;
 }
 .btn{
     float: right;
@@ -24,8 +35,23 @@
     font-size: 16px;
     margin: 4px 2px;
     border: 2px solid black;
+    margin-top: 5%;
 }
 .btn:hover {
     background-color: blue;
     color: white;
   }
+
+.homeWrap{
+    border-top: 3px solid;
+    background-image: url("../Draft/images/homebg.jpg");
+    background-size: 100% 100%;
+    
+    
+}
+.team{
+    background: rgba(124, 13, 13, 0.555);
+}
+.navbar-brand{
+    color: red;
+}
