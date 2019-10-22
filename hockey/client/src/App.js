@@ -5,6 +5,7 @@ import Jumbotron from "./components/Jumbotron";
 import Draft from "./pages/Draft"
 import LoginBox from "./pages/LoginBox";
 import RegisterBox from "./pages/RegisterBox";
+import MyTeam from "./pages/MyTeam"
 
 
 
@@ -19,6 +20,7 @@ function App () {
         <Route exact path="/" component={LoginBox} />
         <Route exact path="/registration" component={RegisterBox} />
         <Route exact path="/home" component={Home} />
+        <Route exact path="/home/team" component={MyTeam} />
         <Route exact path="/draft" component={Draft} />
         
       

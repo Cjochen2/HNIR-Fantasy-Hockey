@@ -6,7 +6,7 @@ function UserTeams(props) {
     return (
         <div className="table">
             <div className="table-title">
-                <h3>{props.table}</h3>
+                <h3>{props.title}</h3>
             </div>
 
             <div className="userTeam-rankings">
@@ -18,7 +18,6 @@ function UserTeams(props) {
                     </tr>
                     {   
                         (props.teams.map((info, i) => {
-
                                 return (<tr>
                                     <th>{i + 1}</th>
                                     <th>{info.teamName}</th>
