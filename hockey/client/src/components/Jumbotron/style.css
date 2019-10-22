@@ -3,7 +3,7 @@
 .jumbotron{
     font-family: 'Quantico', sans-serif;
     font-size: 350%;
-    color: rgb(168, 11, 11);
+    color: rgb(24, 12, 192);
     max-width: 100%;
     background-image: url("../../pages/Draft/images/bg2.jpg");
     background-repeat: no-repeat;
@@ -17,7 +17,6 @@
     float: left;
     max-width: 15%;
     max-height: 5%;
-    margin-bottom: 50%;
 }
 
 .image2{

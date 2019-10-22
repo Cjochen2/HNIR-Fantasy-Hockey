@@ -86,7 +86,7 @@ class Draft extends Component {
 
     render() {
         return (
-            <Wrapper>
+            <Wrapper className="dPage">
                 <Col size="md-12">
                     <div className="rules">
                         <img src={require("./images/hnir1.png")} className="image" alt="logo" /><h1>Rules of the Draft</h1><p className="p1">Welcome to the HNIR draft! When you are ready to select your team, you will pick one player from each team. Once you have selected your 5 players hit the "Buy team" button at the bottom of the page to purchase your team. Fill out all of the necessary fields and once complete,you will be ready to climb the ranks to be crowned fanasty champion!</p>
