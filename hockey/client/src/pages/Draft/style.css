@@ -47,6 +47,7 @@
     background: rgba(204, 204, 204, 0.3);
     text-align: center;
     
+    
 }
 
 .radioBtn {
@@ -67,4 +68,8 @@ margin-left: 5%;
     background-image: url("./images/chris-liverani-5oZ9uVx7buc-unsplash.jpg");
    border-top: 3px solid;
     background-repeat: no-repeat;
+    
+}
+.strBtn{
+    margin-bottom: 3%;
 }

@@ -154,8 +154,10 @@ class Draft extends Component {
                 </Row>
                 <Row>
                     <Col size="md-12">
+                        <div className="strBtn">
                         {this.state.submit && <Checkout saveTeam={this.saveTeam.bind(this)} />}
                         {!this.state.submit && <Message message="Please make sure to have selected 1 player from each team and to have entered in a Team Name"/>}
+                        </div>
                     </Col>
                     
                 </Row>
