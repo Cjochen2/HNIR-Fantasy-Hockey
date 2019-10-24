@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Message } from '../../components/Form'
 import PropTypes from 'prop-types';
 import API from '../../utils/API'
 
@@ -57,6 +58,9 @@ const styles = theme => ({
 
 
 class SignIn extends Component {
+  state = {
+    noMatch: false,
+  }
 
   componentDidMount() {
     this.scrape();
@@ -123,6 +127,15 @@ class SignIn extends Component {
       }
     };
 
+    // handleClick() {
+    //   API.login().then((response) => {
+    //     if (response.data.noMatch) {
+    //       this.setState({
+    //           noMatch: true
+    //       })
+    //     };
+    //   });
+    // };
 
   render() {
     const { classes } = this.props;
@@ -136,6 +149,7 @@ class SignIn extends Component {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
+            {this.state.noMatch && <Message message="Not a Valid Email and/or Password"/>}
         </Typography>
           <form className={classes.form} action="/login" method="POST" Validate>
             <TextField

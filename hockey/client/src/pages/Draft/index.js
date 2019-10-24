@@ -6,7 +6,6 @@ import DraftTeams from "../../components/DraftTeams";
 import Checkout from "../../components/Checkout";
 import { Row, Col } from "../../components/Grid";
 import { Input, Message } from "../../components/Form"
-import {Logout} from "../../components/Logout"
 import Nav from "../../components/Nav"
 import "./style.css";
 class Draft extends Component {

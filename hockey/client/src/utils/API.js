@@ -29,12 +29,23 @@ export default {
         return axios.get("/api/standings/userTeams")
     },
 
+    getMyTeams: function (player) {
+        const requestBody = {
+            player: player
+        }
+        return axios.post("/api/standings/myTeams", requestBody)
+    },
+
     getLeagueTeams: function () {
         return axios.get("/api/standings/leagueTeams")
     },
 
     load: function () {
         return axios.get("/login")
+    },
+
+    login: function () {
+        return axios.post("/login")
     },
 
     logout: function () {

@@ -17,13 +17,16 @@ function UserTeams(props) {
                         <th className="list-header">Name</th>
                         <th className="list-header">Points</th>
                     </tr>
-                    {   
+                    {  
                         (props.teams.map((info, i) => {
                                 return (<tr>
                                     <th>{i + 1}</th>
                                     <th>{info.teamName}</th>
                                     <th>{info.points}</th>
-                                </tr>)
+                                </tr>
+                               
+                                )
+                            
                             }
                         ))
                     }
