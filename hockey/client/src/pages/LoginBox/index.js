@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import { Message } from '../../components/Form'
 import PropTypes from 'prop-types';
 import API from '../../utils/API'
-
+import "./style.css"
 
 
 function Copyright() {
@@ -73,59 +73,59 @@ class SignIn extends Component {
       }
     });
   }
-    scrape() {
-      const teams = [
-        {
-          id: 4909229,
-          team: "The Boys"
-        },
-        {
-          id: 4909227,
-          team: "Buzzed Hockey Club"
-        },
-        {
-          id: 4909228,
-          team: "Cowley's Chaos"
-        },
-        {
-          id: 4965687,
-          team: "Double Deuce"
-        },
-        {
-          id: 4909226,
-          team: "Kelly's Heroes"
-        }
-      ]
-  
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  
-      for (var j = 0; j < teams.length; j++) {
-        let globe = teams[j].id;
-        let teamName = teams[j].team;
-  
-        axios.get(proxyurl + "https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
-          .then(function (response) {
-  
-            var $ = cheerio.load(response.data);
-  
-            $("#player-sm-division-ice_hockey_skater-table").children('tbody').children('tr').each(function (i, element) {
-              let goals =$(element).children().eq(3).text().trim()
-              let assists = $(element).children().eq(4).text().trim()
-              let player = {
-                jerseyNumber: $(element).children(".jersey-number").text().trim() || 0,
-                name: $(element).children(".statPlayer").text().trim(),
-                team: teamName,
-                gamesPlayed: $(element).children().eq(2).text().trim(),
-                goals: goals,
-                assists: assists,
-                points: parseInt(goals) + parseInt(assists)
-              };
-              API.addPlayer(player);
-  
-            });
-          })
+  scrape() {
+    const teams = [
+      {
+        id: 4909229,
+        team: "The Boys"
+      },
+      {
+        id: 4909227,
+        team: "Buzzed Hockey Club"
+      },
+      {
+        id: 4909228,
+        team: "Cowley's Chaos"
+      },
+      {
+        id: 4965687,
+        team: "Double Deuce"
+      },
+      {
+        id: 4909226,
+        team: "Kelly's Heroes"
       }
-    };
+    ]
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+
+    for (var j = 0; j < teams.length; j++) {
+      let globe = teams[j].id;
+      let teamName = teams[j].team;
+
+      axios.get(proxyurl + "https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
+        .then(function (response) {
+
+          var $ = cheerio.load(response.data);
+
+          $("#player-sm-division-ice_hockey_skater-table").children('tbody').children('tr').each(function (i, element) {
+            let goals = $(element).children().eq(3).text().trim()
+            let assists = $(element).children().eq(4).text().trim()
+            let player = {
+              jerseyNumber: $(element).children(".jersey-number").text().trim() || 0,
+              name: $(element).children(".statPlayer").text().trim(),
+              team: teamName,
+              gamesPlayed: $(element).children().eq(2).text().trim(),
+              goals: goals,
+              assists: assists,
+              points: parseInt(goals) + parseInt(assists)
+            };
+            API.addPlayer(player);
+
+          });
+        })
+    }
+  };
 
     // handleClick() {
     //   API.login().then((response) => {
@@ -141,67 +141,75 @@ class SignIn extends Component {
     const { classes } = this.props;
 
     return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-            {this.state.noMatch && <Message message="Not a Valid Email and/or Password"/>}
-        </Typography>
-          <form className={classes.form} action="/login" method="POST" Validate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="user"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+      <div className="logPage">
+        <Container component="main" maxWidth="xs">
+          <div className="logIn">
+            <CssBaseline />
+            <div className={classes.paper}>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
+              <Avatar className={classes.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign in
+        </Typography>
+              <form className={classes.form} action="/login" method="POST" Validate>
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="user"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  Sign In
           </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="#" variant="body2">
+                      Forgot password?
               </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/registration" variant="body2">
-                  Don't have an account? Sign Up
+                  </Grid>
+                  <Grid item>
+                    <Link href="/registration" variant="body2">
+                      Don't have an account? Sign Up
                 </Link>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-      </Container>
+                  </Grid>
+                </Grid>
+              </form>
+
+            </div>
+            <Box mt={8}>
+              <Copyright />
+            </Box>
+          </div>
+        </Container>
+      </div>
     );
   }
 }

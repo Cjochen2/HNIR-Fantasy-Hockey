@@ -1,0 +1,15 @@
+.logPage{
+    background-image: url("../Draft/images/log.jpg");
+    background-size: cover;
+    border-top: 3px solid;
+}
+
+.logIn{
+    background: rgba(250, 249, 249, 0.774);
+    border-radius: 25px;
+    padding: 5%;
+}
+
+.SignIn-paper-2{
+    margin-top: 0px !important;
+}
