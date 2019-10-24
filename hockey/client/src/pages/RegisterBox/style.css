@@ -1,7 +1,8 @@
 .regPage{
     background-image: url("../Draft/images/log.jpg");
-    background-size: 100%;
+    background-size: 100% 100%;
     border-top: 3px solid;
+    padding-bottom: 15%;
 }
 
 .regBg{
@@ -12,4 +13,5 @@
     margin-top: 0px !important;
     background: rgba(250, 249, 249, 0.774);
     border-radius: 25px;
+    
 }
