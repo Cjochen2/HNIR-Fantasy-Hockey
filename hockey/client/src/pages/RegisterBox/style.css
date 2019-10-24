@@ -1,0 +1,15 @@
+.regPage{
+    background-image: url("../Draft/images/log.jpg");
+    background-size: 100%;
+    border-top: 3px solid;
+}
+
+.regBg{
+    padding: 5%;
+}
+
+.makeStyles-paper-1{
+    margin-top: 0px !important;
+    background: rgba(250, 249, 249, 0.774);
+    border-radius: 25px;
+}
