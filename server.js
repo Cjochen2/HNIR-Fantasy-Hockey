@@ -20,6 +20,7 @@ const scrape = require("./scripts/playerScrape");
 const apiKeySecret = process.env.SECRET_TEST;
 const stripe = Stripe(apiKeySecret);
 const upload = multer();
+const root = require('path').join(__dirname, 'client', 'public')
 //Begin of stripe server
 app.use(require("body-parser").text());
 app.use(express.urlencoded({ extended: true }));
@@ -114,9 +115,9 @@ app.use((req, res, next) => {
 // Define any API routes before this runs
 app.use(routes);
 
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
+app.get("*", (req, res) => {
+  res.sendFile('index.html', { root });
+})
 
 // cron.schedule("10 * * * * *", function(){
 //   console.log("-------------------------------");
