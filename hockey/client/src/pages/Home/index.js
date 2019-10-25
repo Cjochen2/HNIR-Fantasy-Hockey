@@ -8,9 +8,7 @@ import Standings from "../../components/Standings";
 import { FormBtn } from "../../components/Form";
 import "./style.css";
 import UserTeams from "../../components/UserTeams";
-import { Logout } from "../../components/Logout"
 import Nav from "../../components/Nav"
-import App from "../../App";
 
 
 

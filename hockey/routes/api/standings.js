@@ -13,6 +13,9 @@ router.route("/goals")
   router.route("/userTeams")
   .get(standingsController.userTeams)
 
+  router.route("/myTeams")
+  .post(standingsController.myTeams)
+
   router.route("/leagueTeams")
   .get(standingsController.leagueTeams)
   

@@ -29,13 +29,13 @@ module.exports = {
       }
     ]
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";proxyurl + 
 
     for (var j = 0; j < teams.length; j++) {
       let globe = teams[j].id;
       let teamName = teams[j].team;
 
-      axios.get(proxyurl + "https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
+      axios.get("https://www.hnir.net/stats/team_instance/" + globe + "?subseason=634286&tab=team_instance_player_stats&tool=3832997")
         .then(function (response) {
 
           var $ = cheerio.load(response.data);
@@ -56,7 +56,11 @@ module.exports = {
             results.push({ player: player });
 
           });
-          console.log(results);
+          // console.log(results);
+          return results;
+          // axios.get("/api/players", function(response){
+          //   console.log(response);
+          // })
         })
     }
   },

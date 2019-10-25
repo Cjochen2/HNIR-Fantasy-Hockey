@@ -5,8 +5,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -14,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Message } from '../../components/Form'
 import PropTypes from 'prop-types';
 import API from '../../utils/API'
 import "./style.css"
@@ -59,6 +58,9 @@ const styles = theme => ({
 
 
 class SignIn extends Component {
+  state = {
+    noMatch: false,
+  }
 
   componentDidMount() {
     this.scrape();
@@ -125,6 +127,15 @@ class SignIn extends Component {
     }
   };
 
+    // handleClick() {
+    //   API.login().then((response) => {
+    //     if (response.data.noMatch) {
+    //       this.setState({
+    //           noMatch: true
+    //       })
+    //     };
+    //   });
+    // };
 
   render() {
     const { classes } = this.props;
@@ -165,10 +176,7 @@ class SignIn extends Component {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
+              
                 <Button
                   type="submit"
                   fullWidth

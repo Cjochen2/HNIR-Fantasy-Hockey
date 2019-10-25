@@ -15,7 +15,7 @@ const multer = require("multer");
 const Stripe = require("stripe");
 const uuidv4 = require("uuid/v4");
 const cron = require("node-cron");
-// const scrape = require("./scripts/playerScrape");
+const scrape = require("./scripts/playerScrape");
 // TODO: Configure with your test mode secret key.
 const apiKeySecret = process.env.SECRET_TEST;
 const stripe = Stripe(apiKeySecret);
@@ -121,7 +121,9 @@ app.get("*", function(req, res) {
 // cron.schedule("10 * * * * *", function(){
 //   console.log("-------------------------------");
 //   console.log("Running Cron Job");
-//   scrape.players();
+//   let playerArray = scrape.players()
+//     console.log(playerArray)
+  
 // })
 // {force: true} causes a hang up when attempting login or signup that requires you to cancel the action and attempt it again to work?
 db.sequelize.sync({force: false}).then(function () {

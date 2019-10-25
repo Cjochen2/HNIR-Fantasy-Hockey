@@ -1,7 +1,8 @@
 .logPage{
     background-image: url("../Draft/images/log.jpg");
-    background-size: cover;
+    background-size: 100% 100%;
     border-top: 3px solid;
+    padding-bottom: 15%
 }
 
 .logIn{
