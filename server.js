@@ -20,7 +20,7 @@ const scrape = require("./scripts/playerScrape");
 const apiKeySecret = process.env.SECRET_TEST;
 const stripe = Stripe(apiKeySecret);
 const upload = multer();
-const root = require('path').join(__dirname, 'client', 'public')
+const root = require('path').join(__dirname, 'client', 'build')
 //Begin of stripe server
 app.use(require("body-parser").text());
 app.use(express.urlencoded({ extended: true }));
