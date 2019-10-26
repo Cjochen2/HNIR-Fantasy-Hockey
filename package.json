@@ -2,7 +2,7 @@
   "name": "hockey",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/build",
+  "homepage": "http://hnir-fantasy-hockey.com/build",
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
