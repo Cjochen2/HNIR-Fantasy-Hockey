@@ -114,10 +114,9 @@ app.use((req, res, next) => {
 // Send every request to the React app
 // Define any API routes before this runs
 app.use(routes);
-app.use(express.static(root));
-app.get("*", (req, res) => {
-  res.sendFile('index.html', { root });
-})
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+ }
 
 // cron.schedule("10 * * * * *", function(){
 //   console.log("-------------------------------");
